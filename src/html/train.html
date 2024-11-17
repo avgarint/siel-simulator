@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-EN" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>TRAIN SNCF</title>
+        <link rel="shortcut icon" href="images/logo.png" type="image/x-icon" />
+        <meta name="author" content="" />
+        <meta name="description" content="" />
+        <link rel="stylesheet" href="../css/style.css" />
+        <link rel="stylesheet" href="../css/mobile.css" />
+        <script src="//unpkg.com/alpinejs" defer></script>
+        <script>
+            function init() {
+                return {
+                    trains: [],
+                    getData() {
+                        this.trains = [
+                            {
+                                id: "1",
+                                operatorLogo: '../images/sncf.svg',
+                                status: 'Test status.',
+                                time: `13h00`,
+                                destination: 'Test destination',
+                                platform: 2
+                            }
+                        ];
+                    }
+                };
+            }
+        </script>
+    </head>
+    <body>
+        <main>
+            <div class="trains-container" x-data="init()" x-init="getData()">
+                <template x-for="train in trains" :key="train.id">
+                    <article class="train-card">
+                        <img :src="train.operatorLogo" :alt="train.operator" />
+                        <p class="train-status" x-text="train.status"></p>
+                        <p class="train-time" x-text="train.time"></p>
+                        <p class="train-destination" x-text="train.destination"></p>
+                        <p class="train-platform" x-text="train.platform"></p>
+                    </article>
+                </template>
+            </div>
+        </main>
+    </body>
+</html>

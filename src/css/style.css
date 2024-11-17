@@ -1,0 +1,315 @@
+:root {
+    --train-card-light-blue: #005ae6;
+    --train-card-dark-blue: #002d9e;
+    --time-text-font-color: #d8ff9e;
+    --background-color-light-blue: #8e9cc9;
+    --header-background-color: white;
+    --border-color-dark-blue: #131993;
+    --station-name-background-color: #131993;
+    --station-name-font-color: white;
+    --current-time-background-color: black;
+    --current-time-font-color: #e4b042;
+    --bus-card-background-color: white;
+    --bus-destination-font-color: #353c87;
+    --special-situation-background-color: white;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --selected-card-background-color: #93f2ff;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+/* index.html start */
+
+.index-body p {
+    text-align: center;
+}
+
+.transport-option-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.transport-option-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background-color: var(--bus-card-background-color);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    width: 120px;
+    height: 100px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.transport-option-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px var(--shadow-color);
+}
+
+.transport-option-card img {
+    width: 60px;
+    height: auto;
+    margin: 10px 0 15px;
+}
+
+.transport-option-card p {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    margin: 10px 0 0;
+    text-align: center;
+}
+
+.load-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.load {
+    background-color: #4c00ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.load:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.transport-option-card.selected {
+    background-color: var(--selected-card-background-color);
+    box-shadow: 0 4px 10px var(--shadow-color);
+    transform: translateY(-3px);
+}
+
+/* train.html start */
+
+.trains-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.train-card {
+    display: flex;
+    align-items: center;
+    background-color: var(--train-card-light-blue);
+    height: 100px;
+    width: 100%;
+}
+
+.train-card:nth-child(odd) {
+    background-color: var(--train-card-dark-blue);
+}
+
+.train-card img {
+    margin-left: 25px;
+    width: 90px;
+    height: 90px;
+    /*todo: change odd file*/
+}
+
+.train-status,
+.train-time,
+.train-destination,
+.train-platform {
+    color: white;
+}
+
+.train-status,
+.train-time {
+    margin-left: 35px;
+}
+
+.train-status {
+    font-size: 1.5rem;
+}
+
+.train-destination {
+    margin-left: 20px;
+    flex-grow: 1;
+    font-size: 4rem;
+    text-align: left;
+}
+
+.train-time {
+    color: var(--time-text-font-color);
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.train-platform {
+    margin-right: 20px;
+    padding: 0 20px;
+    border: 2px solid white;
+    font-size: 4rem;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 8px;
+}
+
+/* bus.html start */
+
+.bus-body {
+    background-color: var(--background-color-light-blue);
+}
+
+.bus-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--header-background-color);
+    border-bottom: 6px solid var(--border-color-dark-blue);
+}
+
+.station-name-container,
+.current-time-container {
+    display: flex;
+    align-items: center;
+    padding: 0.2rem 1rem;
+}
+
+.current-time-unit-container {
+    width: 60%;
+    text-align: center;
+}
+
+.current-time-unit {
+    color: var(--border-color-dark-blue);
+}
+
+.station-name-container {
+    background-color: var(--station-name-background-color);
+}
+
+.station-name {
+    color: var(--station-name-font-color);
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.time-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.current-time-container {
+    background-color: var(--current-time-background-color);
+    border-radius: 0 0 5px 5px;
+}
+
+.current-time {
+    font-weight: bold;
+    color: var(--current-time-font-color);
+    font-size: 2rem;
+    margin: auto;
+}
+
+.bus-main {
+    margin-top: 1rem;
+}
+
+.bus-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.bus-card {
+    display: flex;
+    align-items: center;
+    background-color: var(--bus-card-background-color);
+    height: 80px;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    width: 50%;
+}
+
+.bus-ratp-logo {
+    width: 50px;
+    height: auto;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.bus-line-logo {
+    width: 80px;
+    height: auto;
+}
+
+.bus-destination {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: var(--bus-destination-font-color);
+    flex-grow: 1;
+    margin-left: 1rem;
+}
+
+.bus-time-left,
+.bus-time-right {
+    color: var(--current-time-font-color);
+    background-color: var(--current-time-background-color);
+    border-radius: 5px;
+    width: 50px;
+    padding: 0rem 1.3rem;
+    flex-shrink: 0;
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.bus-time-left {
+    margin-right: 0.5rem;
+}
+
+.bus-time-right {
+    margin-right: 1rem;
+}
+
+.bus-footer {
+    position: fixed;
+    bottom: 0;
+}
+
+.special-situation-container {
+    background-color: var(--special-situation-background-color);
+    padding: 1rem;
+    width: 95%;
+    float: right;
+    box-shadow: 0 -2px 4px var(--shadow-color);
+}
+
+.special-situation {
+    margin: 0;
+    line-height: 3rem;
+    font-size: 1.8rem;
+    margin-left: 30px;
+}

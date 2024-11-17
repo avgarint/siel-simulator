@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-EN" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>SIEL SNCF | RATP</title>
+        <link rel="shortcut icon" href="images/logo.png" type="image/x-icon" />
+        <meta name="author" content="" />
+        <meta name="description" content="" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/mobile.css" />
+        <script src="//unpkg.com/alpinejs" defer></script>
+        <script>
+            const stations = [
+                "Gare de Lyon (Paris)",
+                "Marseille-Saint-Charles (Marseille)",
+                "Gare de Brest (Brest)",
+                "Toulouse Matabiau (Toulouse)",
+                "Gare de Nantes (Nantes)",
+                "Lyon Part Dieu (Lyon)"
+            ];
+
+            function saveSelections(selectedStationIndex, selectedModeIndex) {
+                const stationName = stations[selectedStationIndex];
+                const mode = selectedModeIndex === 1 ? "departures" : "arrivals";
+                const selections = { station: stationName, mode: mode };
+                sessionStorage.setItem("siel", JSON.stringify(selections));
+            }
+
+            function navigate(selectedTransportType, selectedStationIndex, selectedModeIndex) {
+                if (selectedTransportType == null || selectedStationIndex == null || selectedModeIndex == null) {
+                    alert("Please select all options: transport type, station, and mode.");
+                    return;
+                }
+
+                saveSelections(selectedStationIndex, selectedModeIndex);
+                const destination = selectedTransportType === 1 ? "html/train.html" : "html/bus.html";
+                window.location.href = destination;
+            }
+        </script>
+    </head>
+    <body class="index-body" x-data="{ selectedTransportType: null, selectedStation: null, selectedMode: null }">
+        
+        <h1>Welcome.</h1>
+    
+        <p>1. Select transportation mode.</p>
+    
+        <div class="transport-option-container">
+            <div class="transport-option-card" :class="{ 'selected': selectedTransportType === 1 }" x-on:click="selectedTransportType = 1">
+                <p>SNCF</p>
+                <img src="images/train.svg" alt="Train SNCF" />
+            </div>
+            <div class="transport-option-card" :class="{ 'selected': selectedTransportType === 2 }" x-on:click="selectedTransportType = 2">
+                <p>RATP</p>
+                <img src="images/bus.svg" alt="Bus RATP" />
+            </div>
+        </div>
+        
+        <p>2. Select station.</p>
+    
+        <div class="transport-option-container">
+            <template x-for="(station, index) in stations" :key="index">
+                <div class="transport-option-card" :class="{ 'selected': selectedStation === index }" x-on:click="selectedStation = index">
+                    <p x-text="station"></p>
+                </div>
+            </template>
+        </div>
+    
+        <p>3. Select display mode.</p>
+    
+        <div class="transport-option-container">
+            <div class="transport-option-card" :class="{ 'selected': selectedMode === 1 }" x-on:click="selectedMode = 1">
+                <p>Départs</p>
+                <img src="images/left.svg" alt="Departures" />
+            </div>
+            <div class="transport-option-card" :class="{ 'selected': selectedMode === 2 }" x-on:click="selectedMode = 2">
+                <p>Arrivés</p>
+                <img src="images/right.svg" alt="Arrivals" />
+            </div>
+        </div>
+    
+        <div class="load-button-container">
+            <button class="load" x-on:click="navigate(selectedTransportType, selectedStation, selectedMode);">
+                Confirm
+            </button>
+        </div>
+
+    </body>
+</html>

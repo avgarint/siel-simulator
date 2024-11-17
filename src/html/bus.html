@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-EN" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>BUS RATP</title>
+        <link rel="shortcut icon" href="images/logo.png" type="image/x-icon" />
+        <meta name="author" content="" />
+        <meta name="description" content="" />
+        <link rel="stylesheet" href="../css/style.css" />
+        <link rel="stylesheet" href="../css/mobile.css" />
+        <script src="//unpkg.com/alpinejs" defer></script>
+        <script>
+            function init() {
+                return {
+                    station: 'Test station',
+                    specialSituation: 'Test message.',
+                    currentTime: '',
+                    buses: [],
+                    getData() {
+                        this.buses = [
+                            {
+                                line_number: '01',
+                                destination: 'Test destination',
+                                times: [8, 15]
+                            }
+                        ];
+
+                        const now = new Date();
+                        const hours = String(now.getHours()).padStart(2, '0');
+                        const minutes = String(now.getMinutes()).padStart(2, '0');
+                        this.currentTime = `${hours} ${minutes}`;
+                    }
+                };
+            }
+        </script>
+    </head>
+    <body class="bus-body" x-data="init()" x-init="getData()">
+
+        <header class="bus-header">
+            <div class="station-name-container">
+                <p class="station-name" x-text="station"></p>
+            </div>
+            <div class="time-container">
+                <div class="current-time-container">
+                    <p class="current-time" x-text="currentTime"></p>
+                </div>
+                <div class="current-time-unit-container">
+                    <p class="current-time-unit">temps d'attente en minutes</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="bus-main">
+            <div class="bus-container">
+                <template x-for="bus in buses" :key="bus.line_number">
+                    <article class="bus-card">
+                        <img class="bus-ratp-logo" src="../images/ratp.svg" alt="Bus">
+                        <img class="bus-line-logo" :src="bus.lineLogo">
+                        <p class="bus-destination" x-text="bus.destination"></p>
+                        <p class="bus-time-left" x-text="bus.times[0]"></p>
+                        <p class="bus-time-right" x-text="bus.times[1]"></p>
+                    </article>
+                </template>
+            </div>
+        </main>
+
+        <footer class="bus-footer">
+            <div class="special-situation-container">
+                <p class="special-situation" x-text="specialSituation"></p>
+            </div>
+        </footer>
+
+    </body>
+</html>

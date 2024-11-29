@@ -1,6 +1,5 @@
 # siel-simulator
-
-Reproduction of the SIEL (online information system) deployed on French public transport lines.
+Reproduction of the train and bus online information system.
 
 | Train SNCF | Bus RATP |
 | :---:   | :---: |

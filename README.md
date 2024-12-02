@@ -1,5 +1,5 @@
 # siel-simulator
-Reproduction of the train and bus online information system.
+Reproduction of transportation online information system.
 
 | Train SNCF | Bus RATP |
 | :---:   | :---: |
